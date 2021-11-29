@@ -5,6 +5,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 import pages.adminarea.ReviewsPage;
 import pages.frontend.Cameras;
+import utils.Browser;
 
 
 public class LeaveReviewOnProductAsGuestTests extends BaseTest {
@@ -28,6 +29,7 @@ public class LeaveReviewOnProductAsGuestTests extends BaseTest {
         ReviewsPage.navigateToReviewsPage();
         ReviewsPage.deleteAnExistingReview();
         ReviewsPage.logOut();
+        Browser.driver.quit();
     }
 }
 
