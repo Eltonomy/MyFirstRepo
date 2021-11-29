@@ -1,6 +1,7 @@
 package frontend.positive;
 
 import adminarea.core.BaseTest;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 import pages.frontend.RegisterAccount;
 
@@ -11,5 +12,10 @@ public class NewCustomerRegistrationTests extends BaseTest {
         RegisterAccount.navigate();
         RegisterAccount.register();
         RegisterAccount.verifyNewRegistration();
+    }
+
+    @AfterTest
+    public void deleteAccount () {
+
     }
 }

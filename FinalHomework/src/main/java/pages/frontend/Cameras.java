@@ -12,14 +12,14 @@ public class Cameras {
     }
 
     public static void chooseProduct () {
-        Browser.driver.findElement(By.cssSelector("div.product-thumb a img")).click();
+        Browser.driver.findElement(By.xpath("//div[@class='product-thumb']//h4/a[.='Nikon D300']")).click();
     }
     public static void writeOneReview() {
         Actions action = new Actions(Browser.driver);
         WebElement product = Browser.driver.findElement(By.cssSelector("#content ul.nav a[href='#tab-review']"));
         action.moveToElement(product).click(product).perform();
         Browser.driver.findElement(By.id("input-name")).sendKeys("Some Name");
-        Browser.driver.findElement(By.id("input-review")).sendKeys("Something good or bad about this product");
+        Browser.driver.findElement(By.id("input-review")).sendKeys("Something good-or-bad about this product");
         Browser.driver.findElement(By.cssSelector("div.col-sm-12>input[name='rating']:nth-of-type(3)")).click();
         WebElement button = Browser.driver.findElement(By.id("button-review"));
         action.moveToElement(button).click(button).perform();
@@ -28,5 +28,11 @@ public class Cameras {
     public static void verifyReviewSent() {
         String actualMessage = Browser.driver.findElement(By.cssSelector("div.alert-success")).getText();
         Assert.assertEquals(actualMessage, "Thank you for your review. It has been submitted to the webmaster for approval.");
+    }
+
+    public static void verifyReviewPresent() {
+        Browser.driver.findElement(By.cssSelector("#content ul.nav a[href='#tab-review']")).click();
+        WebElement review = Browser.driver.findElement(By.xpath("//tbody//strong"));
+        Assert.assertTrue(review.getText().contains("Some Name"));
     }
 }
